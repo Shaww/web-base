@@ -34,16 +34,19 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'src',
                     src: '**/*.js',
-                    dest: 'build/',
-                    ext: 'es5.js'
+                    dest: 'build/'
                 }] 
             }
+        },
+
+        browserify: {
+            'public/js/bundle.js': 'build/main.js'
         },
 
         watch: {
             source: {
                 files: ['src/**/*.js'],
-                tasks: ['clean', 'eslint', 'babel']
+                tasks: ['clean', 'eslint', 'babel', 'browserify']
             },
 
             static: {
@@ -61,6 +64,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('gruntify-eslint');
     grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['connect', 'watch']);
