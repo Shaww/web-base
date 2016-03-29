@@ -5,8 +5,7 @@ module.exports = function(grunt) {
                 options: {
                     port: 9000,
                     hostname: '192.168.2.172',
-                    base: 'public',
-                    keepalive: true
+                    base: 'public'
                 }
             } 
         },
@@ -45,7 +44,15 @@ module.exports = function(grunt) {
             source: {
                 files: ['src/**/*.js'],
                 tasks: ['clean', 'eslint', 'babel']
-            } 
+            },
+
+            static: {
+                options: {
+                    livereload: true 
+                },
+
+               files: ['public/**/*'], 
+            }
         }
 
     });
